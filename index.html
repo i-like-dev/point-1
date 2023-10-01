@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>站點一登入系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #fff; /* 白色背景 */
+            color: #0a2849; /* 深藍色 */
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .login-container {
+            padding: 20px;
+            max-width: 300px;
+            margin: 0 auto;
+            background-color: #fff; /* 白色背景 */
+            border-radius: 10px;
+            /* 新增格子縮小2公分 */
+            padding: 18px;
+            /* 移除背後陰影 */
+            box-shadow: none;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.1); /* 淺藍色背景 */
+            transition: background-color 0.3s ease;
+            /* 新增文字置中 */
+            text-align: center;
+        }
+        input:focus {
+            background-color: rgba(0, 0, 0, 0.2); /* 較深的淺藍色背景 */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #1a759f; /* 深藍色 */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #13577d; /* 深藍色懸停效果 */
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .time-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>歡迎登入「站點一」</h1>
+        <p>登入後即可使用
+        </p>
+        <form id="loginForm">
+            <label for="username">帳號:</label>
+            <input type="text" id="username" required>
+            <br>
+            <label for="password">密碼:</label>
+            <input type="password" id="password" required>
+            <br>
+            <button type="submit">登入</button>
+        </form>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <div class="time-container">
+        <p>現在時間：<span id="currentTime"></span></p>
+    </div>
+    
+    <script>
+        // 取得時間，並更新現在時間的顯示
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("currentTime").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // 初始化時間，並每秒更新一次
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // 在這裡可以進行帳號密碼的驗證
+
+            // 簡單示範，假設帳號密碼都是 "user"
+            if (username === "point-1" && password === "point-1") {
+                window.location.href = "https://sites.google.com/view/sell-things--website-service/point-1"; // 登入成功後導向的頁面
+            } else {
+                errorMessage.textContent = "帳號或密碼錯誤";
+            }
+        });
+    </script>
+</body>
+</html>
